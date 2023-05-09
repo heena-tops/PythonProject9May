@@ -1,0 +1,107 @@
+{% extends 'header.html' %}
+{% load static %}
+
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+</head>
+
+<body>
+    <!-- Breadcrumb Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+            <div class="col-12">
+                <nav class="breadcrumb bg-light mb-30">
+                    <a class="breadcrumb-item text-dark" href="#">Home</a>
+                    <span class="breadcrumb-item active">Contact</span>
+                </nav>
+            </div>
+        </div>
+    </div>
+    <!-- Breadcrumb End -->
+
+
+    <!-- Contact Start -->
+    <div class="container-fluid">
+        <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">User Registration</span></h2>
+        <div class="row px-xl-5">
+            <div class="col-lg-10 mb-5">
+                <div class="contact-form bg-light p-30">
+                    <div id="success"></div>
+
+                    {% if msg %}
+                        <p style="color:red;">{{msg}}</p>
+                    {% endif %}
+
+                    <form action="{% url 'signup' %}" method="post">
+                        {% csrf_token %}
+
+                        <div class="control-group">
+                            <select name="usertype" class="form-control">
+                                <option>---Select User Type---</option>
+                                <option value="user">User</option>
+                                <option value="seller">Seller</option>
+                            </select>
+                            <p class="help-block text-danger"></p>
+                        </div>
+
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="fname" placeholder="First Name"
+                                required="required" data-validation-required-message="Please enter your fname" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="lname" placeholder="Last Name"
+                                required="required" data-validation-required-message="Please enter your lname" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="date" class="form-control" name="dob" placeholder="DOB"
+                                required="required" data-validation-required-message="Please enter your DOB" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="email" class="form-control" name="email" placeholder="Your Email"
+                                required="required" data-validation-required-message="Please enter your email" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="text" class="form-control" name="contact" placeholder="Contact No"
+                                required="required" data-validation-required-message="Please enter a Contact" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="password" class="form-control" name="pswd" placeholder="Password"
+                                required="required" data-validation-required-message="Please enter a password" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <input type="password" class="form-control" name="cpswd" placeholder="Confirm Password"
+                                required="required" data-validation-required-message="Please enter a Confirm password" />
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div class="control-group">
+                            <textarea class="form-control" rows="8" name="address" placeholder="Address"
+                                required="required"
+                                data-validation-required-message="Please enter your address"></textarea>
+                            <p class="help-block text-danger"></p>
+                        </div>
+                        <div>
+                            <button class="btn btn-primary py-2 px-4" type="submit">Sign UP</button>
+                            <!-- <input class="btn btn-primary py-2 px-4" type="submit" value="SignUp"/> -->
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!-- Contact End -->
+
+</body>
+
+</html>
+
+{% endblock %}

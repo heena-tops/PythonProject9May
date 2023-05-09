@@ -1,0 +1,49 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+</head>
+
+<body>
+
+    <!-- Shop Start -->
+    <div class="container-fluid">
+        <div class="row px-xl-5">
+        
+            <!-- Shop Product Start -->
+
+            {% for i in wishlists %}
+
+            <div class="col-lg-4 col-md-6 col-sm-6 pb-1">
+                        <div class="product-item bg-light mb-4">
+                            <div class="product-img position-relative overflow-hidden">
+                                <img class="img-fluid w-100" src="{{i.product.product_image.url}}" alt="">
+                                <div class="product-action">
+                                    <a class="btn btn-outline-dark btn-rectangle" href="{% url 'product_details' pk=i.pk %}">Add to Cart</a>
+                                </div>
+                            </div>
+                                <div class="text-center py-4">
+                                <p>{{i.product.product_name}}</p>
+                                <div class="d-flex align-items-center justify-content-center mt-2">
+                                    <h5>{{i.product.product_price}}</h5><h6 class="text-muted ml-2"></h6>
+                                </div>
+                                <p>{{i.product.category}}</p>
+                                </div>
+                        </div>
+                </div>
+
+            {% endfor %}
+                    
+            <!-- Shop Product End -->
+        </div>
+    </div>
+    <!-- Shop End -->
+
+</body>
+
+</html>
+{% endblock %}

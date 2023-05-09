@@ -1,0 +1,76 @@
+{% extends 'header.html' %}
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    
+</head>
+
+<body>
+
+    <!-- Shop Detail Start -->
+    <div class="container-fluid pb-5">
+        <div class="row px-xl-5">
+            <div class="col-lg-5 mb-30">
+
+                <div>
+                    <img class="w-100 h-100" src="{{product.product_image.url}}" alt="Image">
+                </div>
+
+                {% if msg %}
+                <p style="color:red;">{{msg}}</p>
+                {% endif %}
+
+            </div>
+
+            <div class="col-lg-7 h-auto mb-30">
+                <div class="h-100 bg-light p-30">
+                    <h3>{{product.product_name}}</h3>
+                    
+                    <h4 class="font-weight-semi-bold mb-4">{{product.product_price}} Rs.</h4>
+                    <p class="mb-4">Qty : {{product.product_qty}}</p>
+
+                    <p class="mb-4">Category : {{product.category}}</p>
+
+                    <p class="mb-4">Description : {{product.product_desc}}</p>
+
+                    {% if request.session.email %}
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        {% if cart_obj %}
+                        <a href="{% url 'remove_from_cart' pk=product.pk %}"><button class="btn btn-primary px-3"> Remove From Cart</button></a>
+                        {% else %}
+                        <a href="{% url 'add_to_cart' pk=product.pk %}"><button class="btn btn-primary px-3"> Add to Cart</button></a>
+                        {% endif %}
+                        
+                        {% if wishlist_obj %}
+                        <a href="{% url 'remove_from_wishlist' pk=product.pk %}"><button class="btn btn-danger px-3"> Remove From Wishlist</button></a>
+                        {% else %}
+                        <a href="{% url 'add_to_wishlist' pk=product.pk %}"><button class="btn btn-danger px-3"> Add to Wishlist</button></a>
+                        {% endif %}
+                    </div>
+                    {% else %}
+                    <div class="d-flex align-items-center mb-4 pt-2">
+                        <a href="{% url 'login' %}"><button class="btn btn-primary px-3">Login For More</button></a>
+                    </div>
+                    {% endif %}
+                    
+                </div>
+            </div>
+        </div>
+
+    </div>
+    <!-- Shop Detail End -->
+
+
+    <!-- Products Start -->
+    
+    <!-- Products End -->
+
+
+    
+</body>
+
+</html>
+{% endblock %}
